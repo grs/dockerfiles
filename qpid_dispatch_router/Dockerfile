@@ -1,4 +1,4 @@
-FROM gordons/qpid-proton:0.13.1
+FROM gordons/qpid-proton:0.15.0
 
 ADD qpid-dispatch-binary.tar.gz /
 EXPOSE 5672
