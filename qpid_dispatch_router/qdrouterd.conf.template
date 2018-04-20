@@ -21,7 +21,7 @@
 # file's format and options.
 
 router {
-    mode: standalone
+    mode: interior
     id: Router.${HOSTNAME}
 }
 
