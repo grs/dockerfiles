@@ -17,6 +17,8 @@ if [ -f "$PATCH_FILE" ]; then
 fi;
 
 cd proton_build
-cmake -DCMAKE_INSTALL_PREFIX=$WORKING/proton_install -DBUILD_CPP=OFF -DBUILD_PERL=OFF -DBUILD_RUBY=OFF -DBUILD_JAVA=OFF -DBUILD_GO=OFF -DBUILD_JAVASCRIPT=OFF -DBUILD_PHP=OFF $WORKING/qpid-proton-src/ && make && make install
+cmake -DCMAKE_INSTALL_PREFIX=$WORKING/proton_install -DBUILD_CPP=OFF -DBUILD_PERL=OFF -DBUILD_RUBY=OFF -DBUILD_GO=OFF -DBUILD_JAVASCRIPT=OFF -DBUILD_PHP=OFF $WORKING/qpid-proton-src/ && make && make install
 cd $WORKING/build
-CMAKE_PREFIX_PATH=$WORKING/proton_install cmake -DBUILD_DOCS=OFF -DCONSOLE_INSTALL=OFF -DCMAKE_INSTALL_PREFIX=/usr $WORKING/qpid-dispatch-src/ && make && make DESTDIR=$WORKING/staging/ install && tar -z -C $WORKING/staging/ -cf $OUTDIR/qpid-dispatch-binary.tar.gz usr etc
+CMAKE_PREFIX_PATH=$WORKING/proton_install cmake -DBUILD_DOCS=OFF -DCONSOLE_INSTALL=ON -DCMAKE_INSTALL_PREFIX=/usr $WORKING/qpid-dispatch-src/ && make && make DESTDIR=$WORKING/staging/ install
+cd $WORKING/staging/usr/share/qpid-dispatch/console/stand-alone && npm install
+tar -z -C $WORKING/staging/ -cf $OUTDIR/qpid-dispatch-binary.tar.gz usr etc
